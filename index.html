@@ -1,942 +1,1233 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ministère de l'Intérieur – République du Wakanda</title>
-<style>
-:root {
---primary-purple: #3b1b5a;
---secondary-green: #1f6f3d;
---dark-bg: #222;
---light-bg: #f4f4f4;
---text-dark: #222;
---text-light: #fff;
-}
-
-body {
-margin: 0;
-font-family: "Times New Roman", serif;
-background-color: var(--light-bg);
-color: var(--text-dark);
-line-height: 1.6;
-}
-
-header {
-background: linear-gradient(90deg, var(--primary-purple), var(--dark-bg), var(--secondary-green));
-color: var(--text-light);
-padding: 20px;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-
-.header-content {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 15px;
-}
-
-.logos-container {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 30px;
-flex-wrap: wrap;
-}
-
-header img {
-height: 90px;
-object-fit: contain;
-transition: transform 0.3s;
-}
-
-header img:hover {
-transform: scale(1.05);
-}
-
-h1 {
-margin: 10px 0;
-font-size: 2.5rem;
-text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.subtitle {
-font-size: 1.2rem;
-opacity: 0.9;
-}
-
-nav {
-background-color: var(--dark-bg);
-padding: 15px;
-position: sticky;
-top: 0;
-z-index: 1000;
-box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.nav-container {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 20px;
-}
-
-nav a {
-color: var(--text-light);
-text-decoration: none;
-font-weight: bold;
-padding: 10px 15px;
-border-radius: 5px;
-transition: all 0.3s;
-position: relative;
-}
-
-nav a:hover {
-background-color: rgba(255,255,255,0.1);
-text-decoration: none;
-transform: translateY(-2px);
-}
-
-nav a::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 50%;
-transform: translateX(-50%);
-width: 0;
-height: 2px;
-background: var(--secondary-green);
-transition: width 0.3s;
-}
-
-nav a:hover::after {
-width: 80%;
-}
-
-.admin-btn {
-position: absolute;
-right: 20px;
-top: 50%;
-transform: translateY(-50%);
-}
-
-.admin-btn button {
-background: var(--secondary-green);
-color: white;
-border: none;
-padding: 10px 20px;
-border-radius: 5px;
-cursor: pointer;
-font-weight: bold;
-transition: all 0.3s;
-}
-
-.admin-btn button:hover {
-background: #2a8b4a;
-transform: scale(1.05);
-}
-
-.container {
-max-width: 1200px;
-margin: 40px auto;
-padding: 0 20px;
-}
-
-.section-header {
-text-align: center;
-margin-bottom: 40px;
-}
-
-.section-header h2 {
-color: var(--primary-purple);
-font-size: 2.2rem;
-position: relative;
-display: inline-block;
-padding-bottom: 15px;
-}
-
-.section-header h2::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 25%;
-width: 50%;
-height: 3px;
-background: linear-gradient(90deg, var(--primary-purple), var(--secondary-green));
-}
-
-.grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
-margin-top: 30px;
-}
-
-.card {
-background: white;
-border-radius: 10px;
-padding: 30px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-transition: transform 0.3s, box-shadow 0.3s;
-border: 1px solid #e0e0e0;
-}
-
-.card:hover {
-transform: translateY(-5px);
-box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.card h3 {
-color: var(--primary-purple);
-margin-top: 0;
-border-bottom: 2px solid var(--secondary-green);
-padding-bottom: 10px;
-}
-
-.feature-list {
-list-style: none;
-padding: 0;
-}
-
-.feature-list li {
-padding: 10px 0;
-border-bottom: 1px solid #eee;
-position: relative;
-padding-left: 30px;
-}
-
-.feature-list li:before {
-content: "✓";
-color: var(--secondary-green);
-position: absolute;
-left: 0;
-font-weight: bold;
-}
-
-.news-feed {
-max-height: 400px;
-overflow-y: auto;
-padding-right: 10px;
-}
-
-.news-item {
-padding: 15px;
-border-bottom: 1px solid #eee;
-background: #f9f9f9;
-margin-bottom: 10px;
-border-radius: 5px;
-}
-
-.news-date {
-color: var(--secondary-green);
-font-size: 0.9rem;
-font-weight: bold;
-}
-
-.minister-profile {
-display: flex;
-gap: 40px;
-align-items: flex-start;
-flex-wrap: wrap;
-}
-
-.minister-photo {
-flex: 0 0 280px;
-}
-
-.minister-photo img {
-width: 100%;
-border-radius: 10px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.minister-info {
-flex: 1;
-min-width: 300px;
-}
-
-.decree-list {
-display: grid;
-gap: 15px;
-}
-
-.decree-item {
-background: #f8f9fa;
-padding: 20px;
-border-radius: 8px;
-border-left: 4px solid var(--primary-purple);
-}
-
-.decree-date {
-color: #666;
-font-size: 0.9rem;
-}
-
-footer {
-background: linear-gradient(90deg, var(--dark-bg), var(--primary-purple));
-color: var(--text-light);
-padding: 40px 20px;
-margin-top: 60px;
-}
-
-.footer-content {
-max-width: 1200px;
-margin: 0 auto;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 40px;
-}
-
-.footer-section h3 {
-color: var(--secondary-green);
-margin-bottom: 20px;
-}
-
-.footer-section a {
-color: #ddd;
-text-decoration: none;
-display: block;
-margin-bottom: 10px;
-transition: color 0.3s;
-}
-
-.footer-section a:hover {
-color: white;
-text-decoration: underline;
-}
-
-.copyright {
-text-align: center;
-margin-top: 40px;
-padding-top: 20px;
-border-top: 1px solid rgba(255,255,255,0.1);
-color: #aaa;
-}
-
-@media (max-width: 768px) {
-.nav-container {
-flex-direction: column;
-gap: 10px;
-}
-
-.admin-btn {
-position: static;
-transform: none;
-margin-top: 15px;
-}
-
-.minister-profile {
-flex-direction: column;
-}
-
-.minister-photo {
-flex: none;
-width: 100%;
-max-width: 300px;
-margin: 0 auto;
-}
-
-h1 {
-font-size: 2rem;
-}
-}
-
-/* Modal styles */
-.modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.8);
-z-index: 2000;
-align-items: center;
-justify-content: center;
-}
-
-.modal-content {
-background: white;
-padding: 40px;
-border-radius: 15px;
-max-width: 500px;
-width: 90%;
-box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.form-group {
-margin-bottom: 20px;
-}
-
-.form-group label {
-display: block;
-margin-bottom: 8px;
-font-weight: bold;
-color: var(--primary-purple);
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-width: 100%;
-padding: 12px;
-border: 2px solid #ddd;
-border-radius: 6px;
-font-size: 16px;
-transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-outline: none;
-border-color: var(--primary-purple);
-}
-
-.btn-primary {
-background: var(--primary-purple);
-color: white;
-border: none;
-padding: 12px 30px;
-border-radius: 6px;
-cursor: pointer;
-font-size: 16px;
-font-weight: bold;
-transition: all 0.3s;
-}
-
-.btn-primary:hover {
-background: #4a257a;
-transform: translateY(-2px);
-}
-
-.btn-secondary {
-background: #666;
-color: white;
-border: none;
-padding: 12px 30px;
-border-radius: 6px;
-cursor: pointer;
-font-size: 16px;
-margin-left: 10px;
-}
-
-/* Admin panel */
-#adminPanel {
-display: none;
-max-width: 1200px;
-margin: 40px auto;
-padding: 20px;
-background: white;
-border-radius: 10px;
-box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.admin-section {
-margin-bottom: 40px;
-padding: 20px;
-background: #f8f9fa;
-border-radius: 8px;
-}
-
-.admin-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 20px;
-}
-
-.content-preview {
-background: white;
-padding: 15px;
-border-radius: 5px;
-border: 1px solid #ddd;
-margin-top: 15px;
-}
-
-.alert {
-padding: 15px;
-border-radius: 5px;
-margin-bottom: 20px;
-display: none;
-}
-
-.alert-success {
-background: #d4edda;
-color: #155724;
-border: 1px solid #c3e6cb;
-}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ministère de l'Intérieur – République du Wakanda</title>
+    <style>
+        :root {
+            --primary-purple: #3b1b5a;
+            --secondary-green: #1f6f3d;
+            --dark-bg: #222;
+            --light-bg: #f4f4f4;
+            --text-dark: #222;
+            --text-light: #fff;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary-purple), var(--dark-bg), var(--secondary-green));
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        header img {
+            height: 100px;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: var(--dark-bg);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        .admin-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .admin-btn button {
+            background: var(--secondary-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .admin-btn button:hover {
+            background: #2a8b4a;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            color: var(--primary-purple);
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-green));
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--primary-purple);
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-green);
+            padding-bottom: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--secondary-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .news-feed {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .news-date {
+            color: var(--secondary-green);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .minister-profile {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .minister-photo {
+            flex: 0 0 300px;
+        }
+
+        .minister-photo img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 3px solid var(--primary-purple);
+        }
+
+        .minister-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .decree-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .decree-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-purple);
+        }
+
+        .decree-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: linear-gradient(90deg, var(--dark-bg), var(--primary-purple));
+            color: var(--text-light);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-green);
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        .document-content {
+            max-height: 400px;
+            overflow-y: auto;
+            border-left: 4px solid var(--primary-purple);
+            padding-left: 15px;
+            margin-top: 15px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .document-content.active {
+            display: block;
+        }
+
+        .document-btn {
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .document-btn:hover {
+            background: #4a257a;
+        }
+
+        .document-section {
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .admin-btn {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+            }
+            
+            .minister-profile {
+                flex-direction: column;
+            }
+            
+            .minister-photo {
+                flex: none;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header img {
+                height: 80px;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-purple);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+        }
+
+        .btn-primary {
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #4a257a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        /* Admin panel */
+        #adminPanel {
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .admin-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .content-preview {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-<div class="header-content">
-<div class="logos-container">
-<img src="drapeau_wakanda.png" alt="Drapeau de la République du Wakanda" />
-<img src="insigne_ministere.png" alt="Insigne du Ministère de l'Intérieur" />
-</div>
-<h1>Ministère de l'Intérieur</h1>
-<p class="subtitle">République du Wakanda<br>Nation unie, futur sûr</p>
-</div>
+    <div class="header-content">
+        <div class="logos-container">
+            <img src="drapeau_wakanda.jpg" alt="Drapeau de la République du Wakanda">
+            <img src="logo_wakanda.jpg" alt="Insigne du Ministère de l'Intérieur">
+        </div>
+        <h1>Ministère de l'Intérieur</h1>
+        <p class="subtitle">République du Wakanda<br>Nation unie, futur sûr</p>
+    </div>
+    <div class="admin-btn">
+        <button onclick="openLogin()">🔐 Administration</button>
+    </div>
 </header>
 
 <nav>
-<div class="nav-container">
-<a href="#accueil">Accueil</a>
-<a href="#election">Élection virtuelle</a>
-<a href="#minivote">Plateforme MINIVOTE</a>
-<a href="#communiques">Communiqués</a>
-<a href="#decrets">Décrets & Décisions</a>
-<a href="#accreditations">Accréditations</a>
-<a href="#contact">Contact</a>
-<div class="admin-btn">
-<button onclick="openLogin()">🔐 Administration</button>
-</div>
-</div>
+    <div class="nav-container">
+        <a href="#accueil">Accueil</a>
+        <a href="#election">Élection virtuelle</a>
+        <a href="#minivote">Plateforme MINIVOTE</a>
+        <a href="#communiques">Communiqués</a>
+        <a href="#decrets">Décrets & Décisions</a>
+        <a href="#documents">Documents Officiels</a>
+        <a href="#accreditations">Accréditations</a>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
 <main>
-<section id="accueil" class="container">
-<div class="section-header">
-<h2>Accueil</h2>
-</div>
-<div class="card">
-<div class="minister-profile">
-<div class="minister-photo">
-<img src="photo_ministre.png" alt="Ministre de l'Intérieur">
-</div>
-<div class="minister-info">
-<h3>Message du Ministre</h3>
-<p>En ma qualité de <strong>Ministre de l'Intérieur</strong> de la République du Wakanda, je vous souhaite la bienvenue sur le portail officiel de l'élection présidentielle virtuelle.</p>
-<p>Notre mission est de garantir un processus électoral transparent, sécurisé et accessible à tous les citoyens, grâce à notre plateforme technologique de pointe <strong>MINIVOTE</strong>.</p>
-<p>Je m'engage personnellement à veiller au respect des principes démocratiques et à la neutralité absolue de ce processus historique.</p>
-</div>
-</div>
-</div>
-</section>
+    <section id="accueil" class="container">
+        <div class="section-header">
+            <h2>Accueil</h2>
+        </div>
+        <div class="card">
+            <div class="minister-profile">
+                <div class="minister-photo">
+                    <img src="aziz.jpg" alt="Ministre de l'Intérieur Aziz Dieng">
+                </div>
+                <div class="minister-info">
+                    <h3>Message du Ministre Aziz Dieng</h3>
+                    <p>En ma qualité de <strong>Ministre de l'Intérieur</strong> de la République du Wakanda, je vous souhaite la bienvenue sur le portail officiel de l'élection présidentielle virtuelle.</p>
+                    <p>Notre mission est de garantir un processus électoral transparent, sécurisé et accessible à tous les citoyens, grâce à notre plateforme technologique de pointe <strong>MINIVOTE</strong>.</p>
+                    <p>Je m'engage personnellement à veiller au respect des principes démocratiques et à la neutralité absolue de ce processus historique.</p>
+                    
+                    <button class="document-btn" onclick="toggleDocument('discoursComplet')">📜 Lire le discours complet</button>
+                    
+                    <div id="discoursComplet" class="document-content">
+                        <h4>Discours du ministre de l'intérieur Aziz Dieng</h4>
+                        <p><em>"Mesdames et Messieurs, concitoyens,</em></p>
+                        <p><em>L'histoire de la démocratie est une histoire d'évolution. Aujourd'hui, notre nation prend un virage décisif vers l'avenir. En ma qualité de Ministre de l'Intérieur, je suis fier d'annoncer que cette élection présidentielle sera administrée par notre nouvelle plateforme nationale : MINIVOTE."</em></p>
+                        
+                        <h5>Mon Expertise au Cœur de la Gouvernance Numérique</h5>
+                        <p><em>"Ma formation en Sciences Politiques et ma spécialisation en Gouvernance de la Sécurité Intérieure ont toujours souligné un impératif : la sécurité et la gouvernance doivent évoluer avec la technologie. La plateforme MINIVOTE est l'incarnation de cette vision.</em></p>
+                        
+                        <h5>Mon Triple Engagement avec MINIVOTE</h5>
+                        <p><em>"L'adoption de MINIVOTE ne remplace pas les valeurs démocratiques ; elle les renforce. Mon engagement en tant que Ministre se décline en trois axes fondamentaux :</em></p>
+                        <ul>
+                            <li><strong>Sécurité Démocratique 360°</strong> : Nous assurons la sécurité physique du matériel électoral et du personnel, tout en garantissant la sécurité logique et cryptographique de chaque vote enregistré sur MINIVOTE.</li>
+                            <li><strong>Neutralité Inébranlable</strong> : L'algorithme de MINIVOTE, tout comme l'administration qui le supervise, est totalement impartial. Il est codé pour la loi, et rien que pour la loi. L'égalité de traitement entre tous les candidats est absolue.</li>
+                            <li><strong>Confiance Numérique Rétablie</strong> : Nous ne demandons pas une confiance aveugle, nous exigeons une confiance vérifiable. Nous avons intégré des mécanismes de traçabilité pour que chaque électeur et chaque partie prenante puisse avoir l'assurance que sa voix est comptée de manière exacte et définitive.</li>
+                        </ul>
+                        <p><em>L'élection via MINIVOTE est une preuve de la maturité de notre démocratie. Elle montre que nous pouvons allier tradition républicaine et innovation technologique pour un avenir plus sûr et plus transparent.</em></p>
+                        <p><em>Je vous remercie de votre confiance dans ce progrès."</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="election" class="container">
-<div class="section-header">
-<h2>Élection Présidentielle Virtuelle</h2>
-</div>
-<div class="grid">
-<div class="card">
-<h3>Calendrier Électoral</h3>
-<ul class="feature-list">
-<li>Inscription des candidats : 1-15 Octobre</li>
-<li>Campagne électorale : 16-30 Octobre</li>
-<li>Vote électronique : 1-3 Novembre</li>
-<li>Publication des résultats : 5 Novembre</li>
-<li>Validation définitive : 7 Novembre</li>
-</ul>
-</div>
-<div class="card">
-<h3>Procédures de Vote</h3>
-<ul class="feature-list">
-<li>Identification sécurisée via MINIVOTE</li>
-<li>Vote anonyme et chiffré</li>
-<li>Vérification en temps réel</li>
-<li>Traçabilité complète</li>
-<li>Contrôle par observateurs indépendants</li>
-</ul>
-</div>
-<div class="card">
-<h3>Ressources</h3>
-<ul class="feature-list">
-<li>Guide de l'électeur numérique</li>
-<li>Manuel des observateurs</li>
-<li>Règlement électoral</li>
-<li>FAQ sur le vote électronique</li>
-<li>Support technique MINIVOTE</li>
-</ul>
-</div>
-</div>
-</section>
+    <section id="election" class="container">
+        <div class="section-header">
+            <h2>Élection Présidentielle Virtuelle</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Calendrier Électoral</h3>
+                <ul class="feature-list">
+                    <li>Inscription des candidats : 1-15 Octobre 2025</li>
+                    <li>Campagne électorale : 16-30 Octobre 2025</li>
+                    <li>Vote électronique : 1-3 Novembre 2025</li>
+                    <li>Publication des résultats : 5 Novembre 2025</li>
+                    <li>Validation définitive : 7 Novembre 2025</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Procédures de Vote</h3>
+                <ul class="feature-list">
+                    <li>Identification sécurisée via MINIVOTE</li>
+                    <li>Vote anonyme et chiffré</li>
+                    <li>Vérification en temps réel</li>
+                    <li>Traçabilité complète</li>
+                    <li>Contrôle par observateurs indépendants</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Ressources</h3>
+                <ul class="feature-list">
+                    <li>Guide de l'électeur numérique</li>
+                    <li>Manuel des observateurs</li>
+                    <li>Règlement électoral</li>
+                    <li>FAQ sur le vote électronique</li>
+                    <li>Support technique MINIVOTE</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-<section id="minivote" class="container">
-<div class="section-header">
-<h2>Plateforme MINIVOTE</h2>
-</div>
-<div class="card">
-<h3>La révolution démocratique numérique</h3>
-<p><strong>MINIVOTE</strong> est la première plateforme nationale de vote électronique développée spécifiquement pour assurer l'intégrité des élections présidentielles au Wakanda.</p>
-<div class="grid">
-<div class="card">
-<h4>✓ Sécurité 360°</h4>
-<p>Cryptographie de niveau militaire, blockchain privée, et authentification multi-facteurs.</p>
-</div>
-<div class="card">
-<h4>✓ Transparence totale</h4>
-<p>Code source ouvert, audit externe permanent, et vérification individuelle des votes.</p>
-</div>
-<div class="card">
-<h4>✓ Accessibilité universelle</h4>
-<p>Interface adaptée à tous, support multi-langues, et assistance technique 24h/24.</p>
-</div>
-</div>
-</div>
-</section>
+    <section id="minivote" class="container">
+        <div class="section-header">
+            <h2>Plateforme MINIVOTE</h2>
+        </div>
+        <div class="card">
+            <h3>La révolution démocratique numérique</h3>
+            <p><strong>MINIVOTE</strong> est la première plateforme nationale de vote électronique développée spécifiquement pour assurer l'intégrité des élections présidentielles au Wakanda.</p>
+            <div class="grid">
+                <div class="card">
+                    <h4>✓ Sécurité 360°</h4>
+                    <p>Cryptographie de niveau militaire, blockchain privée, et authentification multi-facteurs.</p>
+                </div>
+                <div class="card">
+                    <h4>✓ Transparence totale</h4>
+                    <p>Code source ouvert, audit externe permanent, et vérification individuelle des votes.</p>
+                </div>
+                <div class="card">
+                    <h4>✓ Accessibilité universelle</h4>
+                    <p>Interface adaptée à tous, support multi-langues, et assistance technique 24h/24.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="communiques" class="container">
-<div class="section-header">
-<h2>Communiqués Officiels</h2>
-</div>
-<div class="card">
-<div class="news-feed" id="newsContainer">
-<div class="news-item">
-<div class="news-date">15 Septembre 2025</div>
-<strong>Lancement officiel de MINIVOTE</strong>
-<p>Le Ministère de l'Intérieur annonce le déploiement réussi de la plateforme MINIVOTE pour l'élection présidentielle.</p>
-</div>
-</div>
-</div>
-</section>
+    <section id="communiques" class="container">
+        <div class="section-header">
+            <h2>Communiqués Officiels</h2>
+        </div>
+        <div class="card">
+            <div class="news-feed" id="newsContainer">
+                <div class="news-item">
+                    <div class="news-date">12 Décembre 2025</div>
+                    <strong>Accréditation des partis politiques</strong>
+                    <p>Le Ministère de l'Intérieur a officiellement accrédité les partis politiques pour l'élection présidentielle virtuelle.</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">9 Décembre 2025</div>
+                    <strong>Nomination des observateurs électoraux</strong>
+                    <p>Deux observatrices ont été officiellement accréditées pour superviser le processus électoral.</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">7 Décembre 2025</div>
+                    <strong>Accréditation des médias</strong>
+                    <p>Le Groupe de Presse BATBI a reçu l'accréditation pour couvrir l'ensemble du processus électoral.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="decrets" class="container">
-<div class="section-header">
-<h2>Décrets & Décisions</h2>
-</div>
-<div class="card">
-<div class="decree-list" id="decreesContainer">
-<div class="decree-item">
-<div class="decree-date">Décision n°2025-001 - 1er Septembre 2025</div>
-<strong>Reconnaissance des partis politiques</strong>
-<p>Liste des partis autorisés à participer à l'élection présidentielle virtuelle.</p>
-</div>
-</div>
-</div>
-</section>
+    <section id="decrets" class="container">
+        <div class="section-header">
+            <h2>Décrets & Décisions</h2>
+        </div>
+        <div class="card">
+            <div class="decree-list" id="decreesContainer">
+                <div class="decree-item">
+                    <div class="decree-date">Décision n°2025-AP/DGE/OVS - 9 Décembre 2025</div>
+                    <strong>Accréditation des observateurs électoraux</strong>
+                    <p>Accréditation de Sidou Delphine Mané et Fatou Wangara en qualité d'observatrices électorales.</p>
+                </div>
+                <div class="decree-item">
+                    <div class="decree-date">Arrêté Ministériel - 5 Décembre 2025</div>
+                    <strong>Organisation de l'élection présidentielle</strong>
+                    <p>Fixation des règles, procédures d'organisation, de déroulement et de contrôle de l'élection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="accreditations" class="container">
-<div class="section-header">
-<h2>Accréditations</h2>
-</div>
-<div class="grid">
-<div class="card">
-<h3>Observateurs</h3>
-<p>Accréditation des observateurs nationaux et internationaux pour le suivi du processus électoral.</p>
-</div>
-<div class="card">
-<h3>Médias</h3>
-<p>Accès privilégié pour les journalistes et médias accrédités.</p>
-</div>
-<div class="card">
-<h3>Société Civile</h3>
-<p>Participation des organisations de la société civile au processus de supervision.</p>
-</div>
-</div>
-</section>
+    <section id="documents" class="container">
+        <div class="section-header">
+            <h2>📄 Documents Officiels</h2>
+        </div>
+        
+        <div class="card document-section">
+            <h3>Règlement Électoral Complet</h3>
+            <p><strong>Arrêté portant organisation de l'élection présidentielle</strong></p>
+            <button class="document-btn" onclick="toggleDocument('reglementComplet')">Afficher le règlement complet</button>
+            <div id="reglementComplet" class="document-content">
+                <h4>République du Wakanda - Ministère de l'Intérieur</h4>
+                <h4>ARRÊTÉ PORTANT ORGANISATION DE L'ÉLECTION PRÉSIDENTIELLE</h4>
+                
+                <p><strong>Article premier :</strong> Objet du présent arrêté</p>
+                <p>Le présent arrêté fixe les règles, procédures d'organisation, de déroulement et de contrôle de l'élection. Il garantit la transparence, l'équité, la sécurité et l'intégrité du processus électoral.</p>
+                
+                <p><strong>Article 2 :</strong> Conditions d'éligibilité</p>
+                <p>Tout étudiant régulièrement inscrit peut se porter candidat. Les candidatures doivent être déposées dans les délais fixés. Chaque dossier comporte une photo, un programme et une déclaration d'honorabilité.</p>
+                
+                <p><strong>Article 3 :</strong> Fichier électoral</p>
+                <p>Le fichier électoral regroupe les électeurs autorisés. Chaque électeur dispose d'un identifiant unique (MATRICULE). Aucun électeur ne peut voter plus d'une fois.</p>
+                
+                <p><strong>Article 4 :</strong> Commission électorale</p>
+                <p>La Commission électorale supervise l'ensemble du processus, valide les candidatures, contrôle la campagne, tranche les litiges et certifie les résultats.</p>
+                
+                <p><strong>Article 5 :</strong> Campagne électorale</p>
+                <p>La campagne se déroule durant la période définie. Les discours haineux et fausses informations sont interdits. Les candidats doivent promouvoir un débat respectueux.</p>
+                
+                <p><strong>Article 6 :</strong> Plateforme de vote</p>
+                <p>Le vote se fait via une plateforme sécurisée garantissant anonymat et intégrité. Elle empêche les votes multiples.</p>
+                
+                <p><strong>Article 7 :</strong> Modalités d'accès à la plateforme Minivote</p>
+                <p>Le vote se déroulera exclusivement en ligne via la plateforme Minivote. Chaque électeur doit s'inscrire préalablement sur Minivote, vérifier l'exactitude de ses informations et respecter les consignes de connexion et de vote. Aucun électeur non inscrit ne pourra participer au scrutin.</p>
+                
+                <p><strong>Article 8 :</strong> Déroulement du scrutin</p>
+                <p>Le scrutin s'ouvre et se ferme aux heures fixées. L'accès nécessite un identifiant institutionnel. Une assistance technique est disponible.</p>
+                
+                <p><strong>Article 9 :</strong> Dépouillement et proclamation des résultats</p>
+                <p>Le dépouillement est effectué après la clôture. La Commission vérifie, valide et publie les résultats.</p>
+                
+                <p><strong>Article 10 :</strong> Voies de recours</p>
+                <p>Les candidats disposent d'un délai pour introduire des recours examinés par les juridictions compétentes. Aucun recours n'est recevable après la proclamation officielle.</p>
+                
+                <p><strong>Article 11 :</strong> Attributions de la société civile</p>
+                <p>Observer, sensibiliser et alerter en cas d'irrégularités.</p>
+                
+                <p><strong>Article 12 :</strong> Attributions de la presse</p>
+                <p>Couvrir le processus, informer et faciliter l'accès à l'information.</p>
+                
+                <p><strong>Article 13 :</strong> Attributions des observateurs</p>
+                <p>Observer le vote et le dépouillement, rédiger un rapport et signaler toute anomalie.</p>
+                
+                <p><strong>Article 14 :</strong> Attributions de la CENA</p>
+                <p>Superviser le processus, veiller au respect des lois et certifier la conformité de l'élection.</p>
+                
+                <p><strong>Article 15 :</strong> Attributions de la DGE</p>
+                <p>Organiser le dispositif matériel et technique, gérer le fichier électoral, assurer la sécurité informatique.</p>
+                
+                <p><strong>Article 16 :</strong> Attributions de la Cour suprême</p>
+                <p>Examiner les recours administratifs et veiller à la légalité.</p>
+                
+                <p><strong>Article 17 :</strong> Attributions du Conseil constitutionnel</p>
+                <p>Contrôler la conformité à la Constitution, valider les résultats et statuer sur les contestations.</p>
+                
+                <p><strong>Article 18 :</strong> Dispositions finales</p>
+                <p>Toute violation expose à des sanctions. Le présent arrêté est publié partout où besoin sera.</p>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="card document-section">
+                <h3>Accréditations Partis Politiques</h3>
+                <ul class="feature-list">
+                    <li><strong>Alliance pour le Renouveau – Wakanda (AR-WAKANDA)</strong><br>Autorisation N°672/MI/DGAPE/2025</li>
+                    <li><strong>Rassemblement des Forces Émergentes (RFE)</strong><br>Autorisation N°673/MI/DGAPE/2025</li>
+                </ul>
+                <button class="document-btn" onclick="toggleDocument('accreditationsPartis')">Voir les accréditations</button>
+                <div id="accreditationsPartis" class="document-content">
+                    <h4>ACCORDÉATION N°672/MI/DGAPE/2025</h4>
+                    <p><strong>Le Ministre de l'Intérieur,</strong></p>
+                    <p>Vu la <strong>Constitution</strong> ;<br>
+                    Vu les lois et règlements encadrant l'organisation de l'élection présidentielle ;<br>
+                    Vu la demande déposée par le parti « Alliance pour le Renouveau -- Wakanda » ;<br>
+                    Vu les pièces fournies, notamment la liste des membres fondateurs, les statuts, le procès-verbal de l'assemblée constitutive et la demande de reconnaissance ;</p>
+                    <p><strong>Autorise, par la présente, le parti politique dénommé :<br>
+                    ALLIANCE POUR LE RENOUVEAU -- WAKANDA (AR-WAKANDA)</strong> à participer officiellement à l'élection présidentielle virtuelle organisée au sein de la classe pour l'année 2025.</p>
+                    <p>Cette autorisation confère au parti :<br>
+                    - La reconnaissance officielle par les autorités organisatrices ;<br>
+                    - Le droit de présenter une candidature au scrutin ;<br>
+                    - Le droit d'effectuer des activités de campagne dans l'espace prévu ;<br>
+                    - Le droit de désigner des représentants et observateurs ;<br>
+                    - L'accès aux documents, réunions et dispositions prévues dans le cadre du processus électoral.</p>
+                    <p><strong>Fait à Dakar, le 12 décembre 2025<br>
+                    Le Ministre de l'Intérieur</strong></p>
+                    
+                    <hr>
+                    
+                    <h4>ACCORDÉATION N°673/MI/DGAPE/2025</h4>
+                    <p><strong>Le Ministre de l'Intérieur,</strong></p>
+                    <p>Vu la Constitution ;<br>
+                    Vu les lois et règlements encadrant l'organisation de l'élection présidentielle virtuelle ;<br>
+                    Vu la demande déposée par le parti « Rassemblement des Forces Émergentes (RFE) » ;<br>
+                    Vu les pièces fournies, notamment la liste des membres fondateurs, les statuts et la demande de reconnaissance ;</p>
+                    <p><strong>Autorise, par la présente, le parti politique dénommé :<br>
+                    RASSEMBLEMENT DES FORCES ÉMERGENTES (RFE)</strong> à participer officiellement à l'élection présidentielle virtuelle organisée au sein de la classe pour l'année 2025.</p>
+                    <p>Cette autorisation confère au parti :<br>
+                    - La reconnaissance officielle par les autorités organisatrices ;<br>
+                    - Le droit de présenter une candidature au scrutin ;<br>
+                    - Le droit d'effectuer des activités de campagne dans l'espace prévu ;<br>
+                    - Le droit de désigner des représentants et observateurs ;<br>
+                    - L'accès aux documents, réunions et dispositions prévues dans le cadre du processus électoral.</p>
+                    <p><strong>Fait à Dakar, le 12 décembre 2025<br>
+                    Le Ministre de l'Intérieur</strong></p>
+                </div>
+            </div>
+            
+            <div class="card document-section">
+                <h3>Accréditations Médias & Observateurs</h3>
+                <ul class="feature-list">
+                    <li><strong>Groupe de Presse BATBI</strong> (5 journalistes accrédités)</li>
+                    <li><strong>Observatrices électorales</strong> : Sidou Delphine Mané & Fatou Wangara</li>
+                    <li><strong>Société Civile</strong> : Voix Civile et Unie du Wakanda (VCUW)</li>
+                </ul>
+                <button class="document-btn" onclick="toggleDocument('accreditationsMedias')">Voir les documents</button>
+                <div id="accreditationsMedias" class="document-content">
+                    <h4>ACCORDÉATION DE LA PRESSE BATBI</h4>
+                    <p><strong>Dakar, le 07 décembre 2025</strong></p>
+                    <p><strong>À Monsieur Abdallah Ahmat Abidi<br>Directeur Général du Groupe de Presse BATBI</strong></p>
+                    
+                    <p><strong>OBJET : Octroi d'accréditations pour la couverture de l'élection présidentielle</strong></p>
+                    
+                    <p>Monsieur le Directeur Général,</p>
+                    
+                    <p>Suite à votre correspondance en date du 06 décembre 2025 sollicitant l'accréditation officielle de vos équipes pour la couverture intégrale de l'élection présidentielle de la République du Wakanda, j'ai l'honneur de vous notifier que votre requête a reçu une suite favorable.</p>
+                    
+                    <p>Conformément aux dispositions régissant l'accès des médias au processus électoral, et après examen des pièces fournies, le Ministère de l'Intérieur accorde les accréditations officielles aux cinq (5) journalistes dûment mandatés par votre rédaction, à savoir :</p>
+                    <ul>
+                        <li>ABDALLAH Ahmat Abidi -- Directeur Général / Rédacteur -- Le Baobab</li>
+                        <li>NDEYE Ndella Dia -- Rédactrice -- Le Baobab</li>
+                        <li>SALL Fatimata -- Présentatrice / Reporter -- EchosTV</li>
+                        <li>DIENG Khadija -- Journaliste Télé -- EchosTV</li>
+                        <li>NNEME Gladina Eyang Asumu -- Responsable Web -- PresseActu</li>
+                    </ul>
+                    
+                    <p>Les personnes susmentionnées sont désormais autorisées à accéder aux lieux, espaces et opérations électorales conformément aux règles établies par la Direction Générale des Élections.</p>
+                    
+                    <p>Elles pourront notamment :</p>
+                    <ul>
+                        <li>participer aux briefings officiels destinés aux médias ;</li>
+                        <li>accéder, suivant les protocoles de sécurité, aux bureaux de vote désignés ;</li>
+                        <li>utiliser la plateforme numérique Minivote dans le cadre de leurs activités d'information ;</li>
+                        <li>couvoir les différentes étapes du scrutin, du lancement des opérations jusqu'à la proclamation provisoire des résultats.</li>
+                    </ul>
+                    
+                    <p>Il est toutefois rappelé que ces accréditations impliquent le respect strict des dispositions légales, des directives de sécurité, ainsi que des principes de neutralité, d'éthique et de responsabilité professionnelle.</p>
+                    
+                    <p>Veuillez agréer, Monsieur le Directeur Général, l'expression de ma considération distinguée.</p>
+                    
+                    <p><strong>Le Ministre de l'Intérieur</strong></p>
+                    
+                    <hr>
+                    
+                    <h4>ACCORDÉATION DE LA SOCIÉTÉ CIVILE</h4>
+                    <p><strong>Objet : Accréditation officielle de la société civile Voix Civile et Unie du Wakanda (VCUW)</strong></p>
+                    
+                    <p>Madame la <strong>présidente</strong>,</p>
+                    
+                    <p>Suite à votre demande d'accréditation en date du 8 décembre 2025, le Ministère de l'Intérieur, à travers la Direction Générale des Affaires Électorales, a le plaisir de vous notifier l'octroi officiel de l'accréditation permettant à votre organisation, <strong>Voix Civile et Unie du Wakanda (VCUW)</strong>, de participer aux activités liées à l'élection présidentielle.</p>
+                    
+                    <p>Cette accréditation vous autorise notamment à :</p>
+                    <ul>
+                        <li><strong>Observer l'ensemble du processus électoral ;</strong></li>
+                        <li><strong>Participer aux réunions de concertation et de coordination électorale ;</strong></li>
+                        <li><strong>Produire des rapports d'observation et les transmettre aux autorités compétentes ;</strong></li>
+                        <li><strong>Collaborer avec les institutions électorales pour le renforcement de la transparence.</strong></li>
+                    </ul>
+                    
+                    <p>Elle est valable pour toute la durée du processus électoral et sous réserve du respect strict du code de conduite des observateurs et des règles établies par le Ministère de l'Intérieur.</p>
+                    
+                    <p>Nous vous félicitons pour votre engagement citoyen et vous souhaitons plein succès dans vos missions.</p>
+                    
+                    <p>Veuillez agréer, Madame la Présidente, l'expression de nos salutations distinguées.</p>
+                    
+                    <p><strong>Le Ministre de l'Intérieur</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="contact" class="container">
-<div class="section-header">
-<h2>Contact</h2>
-</div>
-<div class="grid">
-<div class="card">
-<h3>Coordonnées</h3>
-<p><strong>Ministère de l'Intérieur</strong><br>
-Direction Générale des Élections<br>
-Complexe Gouvernemental, Quartier Ministériel<br>
-Birnin Zana, République du Wakanda</p>
-<p>📧 elections@interieur-wakanda.gov<br>
-📞 +245 123 456 789</p>
-</div>
-<div class="card">
-<h3>Support Technique MINIVOTE</h3>
-<p>Assistance 24h/24 pendant la période électorale</p>
-<p>📧 support@minivote.gov.wk<br>
-📞 +245 987 654 321</p>
-</div>
-</div>
-</section>
+    <section id="accreditations" class="container">
+        <div class="section-header">
+            <h2>Accréditations</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Observateurs</h3>
+                <p>Accréditation des observateurs nationaux et internationaux pour le suivi du processus électoral.</p>
+                <ul class="feature-list">
+                    <li>Sidou Delphine Mané</li>
+                    <li>Fatou Wangara</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Médias</h3>
+                <p>Accès privilégié pour les journalistes et médias accrédités.</p>
+                <ul class="feature-list">
+                    <li>Groupe de Presse BATBI</li>
+                    <li>5 journalistes accrédités</li>
+                    <li>Couverture complète du processus</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Société Civile</h3>
+                <p>Participation des organisations de la société civile au processus de supervision.</p>
+                <ul class="feature-list">
+                    <li>Voix Civile et Unie du Wakanda (VCUW)</li>
+                    <li>Observation indépendante</li>
+                    <li>Rapports d'évaluation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="section-header">
+            <h2>Contact</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Coordonnées</h3>
+                <p><strong>Ministère de l'Intérieur</strong><br>
+                Direction Générale des Élections<br>
+                Complexe Gouvernemental, Quartier Ministériel<br>
+                Birnin Zana, République du Wakanda</p>
+                <p>📧 elections@interieur-wakanda.gov<br>
+                📞 +245 123 456 789</p>
+            </div>
+            <div class="card">
+                <h3>Support Technique MINIVOTE</h3>
+                <p>Assistance 24h/24 pendant la période électorale</p>
+                <p>📧 support@minivote.gov.wk<br>
+                📞 +245 987 654 321</p>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer>
-<div class="footer-content">
-<div class="footer-section">
-<h3>Ministère de l'Intérieur</h3>
-<p>Garant de la sécurité intérieure et de l'organisation des élections nationales.</p>
-</div>
-<div class="footer-section">
-<h3>Liens Rapides</h3>
-<a href="#accueil">Accueil</a>
-<a href="#election">Élection</a>
-<a href="#minivote">MINIVOTE</a>
-<a href="#decrets">Décrets</a>
-<a href="#contact">Contact</a>
-</div>
-<div class="footer-section">
-<h3>Ressources</h3>
-<a href="#">Téléchargements officiels</a>
-<a href="#">Archives des élections</a>
-<a href="#">Rapports annuels</a>
-<a href="#">Statistiques</a>
-</div>
-<div class="footer-section">
-<h3>Transparence</h3>
-<a href="#">Données ouvertes</a>
-<a href="#">Audits indépendants</a>
-<a href="#">Rapports financiers</a>
-<a href="#">Éthique et déontologie</a>
-</div>
-</div>
-<div class="copyright">
-<p>&copy; 2025 – Ministère de l'Intérieur | République du Wakanda</p>
-<p>Tous droits réservés | Version 2.0</p>
-</div>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Ministère de l'Intérieur</h3>
+            <p>Garant de la sécurité intérieure et de l'organisation des élections nationales.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Liens Rapides</h3>
+            <a href="#accueil">Accueil</a>
+            <a href="#election">Élection</a>
+            <a href="#minivote">MINIVOTE</a>
+            <a href="#decrets">Décrets</a>
+            <a href="#documents">Documents</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-section">
+            <h3>Ressources</h3>
+            <a href="#documents">Documents officiels</a>
+            <a href="#decrets">Décrets et décisions</a>
+            <a href="#communiques">Communiqués</a>
+            <a href="#accreditations">Accréditations</a>
+        </div>
+        <div class="footer-section">
+            <h3>Transparence</h3>
+            <a href="#documents">Règlement électoral</a>
+            <a href="#accreditations">Observateurs indépendants</a>
+            <a href="#minivote">Plateforme MINIVOTE</a>
+            <a href="#contact">Contact et support</a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 – Ministère de l'Intérieur | République du Wakanda</p>
+        <p>Tous droits réservés | Version 3.0</p>
+    </div>
 </footer>
 
 <!-- Login Modal -->
 <div id="loginModal" class="modal">
-<div class="modal-content">
-<h2>Connexion Administration</h2>
-<div class="form-group">
-<label>Identifiant Administrateur</label>
-<input type="text" id="adminUser" placeholder="Votre identifiant">
-</div>
-<div class="form-group">
-<label>Mot de passe</label>
-<input type="password" id="adminPass" placeholder="Votre mot de passe">
-</div>
-<div id="loginAlert" class="alert"></div>
-<div style="text-align: right;">
-<button class="btn-secondary" onclick="closeLogin()">Annuler</button>
-<button class="btn-primary" onclick="loginAdmin()">Se connecter</button>
-</div>
-</div>
+    <div class="modal-content">
+        <h2>Connexion Administration</h2>
+        <div class="form-group">
+            <label>Identifiant Administrateur</label>
+            <input type="text" id="adminUser" placeholder="Votre identifiant">
+        </div>
+        <div class="form-group">
+            <label>Mot de passe</label>
+            <input type="password" id="adminPass" placeholder="Votre mot de passe">
+        </div>
+        <div id="loginAlert" class="alert"></div>
+        <div style="text-align: right;">
+            <button class="btn-secondary" onclick="closeLogin()">Annuler</button>
+            <button class="btn-primary" onclick="loginAdmin()">Se connecter</button>
+        </div>
+    </div>
 </div>
 
 <!-- Admin Panel -->
 <div id="adminPanel">
-<h2>🔧 Panneau d'Administration</h2>
-<div class="alert" id="adminAlert"></div>
-<div class="admin-grid">
-<div class="admin-section">
-<h3>Gestion des Communiqués</h3>
-<div class="form-group">
-<label>Titre du communiqué</label>
-<input type="text" id="newsTitle" placeholder="Titre du communiqué">
-</div>
-<div class="form-group">
-<label>Contenu</label>
-<textarea id="newsContent" rows="4" placeholder="Contenu du communiqué"></textarea>
-</div>
-<button class="btn-primary" onclick="addNews()">Publier le communiqué</button>
-</div>
-<div class="admin-section">
-<h3>Gestion des Décrets</h3>
-<div class="form-group">
-<label>Référence du décret</label>
-<input type="text" id="decreeRef" placeholder="Ex: Décision n°2025-XXX">
-</div>
-<div class="form-group">
-<label>Contenu du décret</label>
-<textarea id="decreeContent" rows="4" placeholder="Contenu du décret"></textarea>
-</div>
-<button class="btn-primary" onclick="addDecree()">Publier le décret</button>
-</div>
-<div class="admin-section">
-<h3>Gestion des Documents</h3>
-<div class="form-group">
-<label>Type de document</label>
-<select id="docType">
-<option value="decret">Décret</option>
-<option value="arrete">Arrêté</option>
-<option value="circulaire">Circulaire</option>
-<option value="note">Note de service</option>
-</select>
-</div>
-<div class="form-group">
-<label>Télécharger un document</label>
-<input type="file" id="documentUpload" accept=".pdf,.doc,.docx">
-</div>
-<button class="btn-primary" onclick="uploadDocument()">Télécharger</button>
-</div>
-</div>
-<div class="admin-section">
-<h3>Contenus Publiés</h3>
-<div id="publishedContent"></div>
-</div>
-<button class="btn-secondary" onclick="logoutAdmin()">Déconnexion</button>
+    <h2>🔧 Panneau d'Administration</h2>
+    <div class="alert" id="adminAlert"></div>
+    <div class="admin-grid">
+        <div class="admin-section">
+            <h3>Gestion des Communiqués</h3>
+            <div class="form-group">
+                <label>Titre du communiqué</label>
+                <input type="text" id="newsTitle" placeholder="Titre du communiqué">
+            </div>
+            <div class="form-group">
+                <label>Contenu</label>
+                <textarea id="newsContent" rows="4" placeholder="Contenu du communiqué"></textarea>
+            </div>
+            <button class="btn-primary" onclick="addNews()">Publier le communiqué</button>
+        </div>
+        <div class="admin-section">
+            <h3>Gestion des Décrets</h3>
+            <div class="form-group">
+                <label>Référence du décret</label>
+                <input type="text" id="decreeRef" placeholder="Ex: Décision n°2025-XXX">
+            </div>
+            <div class="form-group">
+                <label>Contenu du décret</label>
+                <textarea id="decreeContent" rows="4" placeholder="Contenu du décret"></textarea>
+            </div>
+            <button class="btn-primary" onclick="addDecree()">Publier le décret</button>
+        </div>
+        <div class="admin-section">
+            <h3>Gestion des Documents</h3>
+            <div class="form-group">
+                <label>Type de document</label>
+                <select id="docType">
+                    <option value="decret">Décret</option>
+                    <option value="arrete">Arrêté</option>
+                    <option value="circulaire">Circulaire</option>
+                    <option value="note">Note de service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Télécharger un document</label>
+                <input type="file" id="documentUpload" accept=".pdf,.doc,.docx">
+            </div>
+            <button class="btn-primary" onclick="uploadDocument()">Télécharger</button>
+        </div>
+    </div>
+    <div class="admin-section">
+        <h3>Contenus Publiés</h3>
+        <div id="publishedContent"></div>
+    </div>
+    <button class="btn-secondary" onclick="logoutAdmin()">Déconnexion</button>
 </div>
 
 <script>
-// Configuration admin
-const ADMIN_CONFIG = {
-USER: "admin",
-PASS: "MinInterieur2025!",
-TOKEN: "MI-WK-2025-ADMIN"
-};
+    // Configuration admin
+    const ADMIN_CONFIG = {
+        USER: "admin",
+        PASS: "MinInterieur2025!",
+        TOKEN: "MI-WK-2025-ADMIN"
+    };
 
-// Données initiales
-let publishedContent = [];
+    // Données initiales
+    let publishedContent = [];
 
-function openLogin() {
-document.getElementById('loginModal').style.display = 'flex';
-document.getElementById('adminUser').focus();
-}
+    // Fonction pour afficher/masquer les documents
+    function toggleDocument(id) {
+        const doc = document.getElementById(id);
+        if (doc.classList.contains('active')) {
+            doc.classList.remove('active');
+        } else {
+            doc.classList.add('active');
+        }
+    }
 
-function closeLogin() {
-document.getElementById('loginModal').style.display = 'none';
-document.getElementById('adminUser').value = '';
-document.getElementById('adminPass').value = '';
-}
+    // Fonctions d'administration
+    function openLogin() {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('adminUser').focus();
+    }
 
-function showAlert(elementId, message, type = 'success') {
-const alertDiv = document.getElementById(elementId);
-alertDiv.textContent = message;
-alertDiv.className = `alert alert-${type}`;
-alertDiv.style.display = 'block';
-setTimeout(() => {
-alertDiv.style.display = 'none';
-}, 3000);
-}
+    function closeLogin() {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+    }
 
-function loginAdmin() {
-const user = document.getElementById('adminUser').value;
-const pass = document.getElementById('adminPass').value;
-if (user === ADMIN_CONFIG.USER && pass === ADMIN_CONFIG.PASS) {
-localStorage.setItem('adminToken', ADMIN_CONFIG.TOKEN);
-showAlert('loginAlert', 'Connexion réussie !', 'success');
-setTimeout(() => {
-closeLogin();
-document.getElementById('adminPanel').style.display = 'block';
-document.body.scrollTop = 0;
-}, 1000);
-} else {
-showAlert('loginAlert', 'Identifiants incorrects', 'error');
-}
-}
+    function showAlert(elementId, message, type = 'success') {
+        const alertDiv = document.getElementById(elementId);
+        alertDiv.textContent = message;
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.style.display = 'block';
+        setTimeout(() => {
+            alertDiv.style.display = 'none';
+        }, 3000);
+    }
 
-function logoutAdmin() {
-localStorage.removeItem('adminToken');
-document.getElementById('adminPanel').style.display = 'none';
-showAlert('adminAlert', 'Déconnexion réussie', 'success');
-}
+    function loginAdmin() {
+        const user = document.getElementById('adminUser').value;
+        const pass = document.getElementById('adminPass').value;
+        if (user === ADMIN_CONFIG.USER && pass === ADMIN_CONFIG.PASS) {
+            localStorage.setItem('adminToken', ADMIN_CONFIG.TOKEN);
+            showAlert('loginAlert', 'Connexion réussie !', 'success');
+            setTimeout(() => {
+                closeLogin();
+                document.getElementById('adminPanel').style.display = 'block';
+                document.body.scrollTop = 0;
+            }, 1000);
+        } else {
+            showAlert('loginAlert', 'Identifiants incorrects', 'error');
+        }
+    }
 
-function addNews() {
-const title = document.getElementById('newsTitle').value;
-const content = document.getElementById('newsContent').value;
-if (!title || !content) {
-showAlert('adminAlert', 'Veuillez remplir tous les champs', 'error');
-return;
-}
-const newsItem = {
-type: 'news',
-title: title,
-content: content,
-date: new Date().toLocaleDateString('fr-FR', {
-year: 'numeric',
-month: 'long',
-day: 'numeric'
-})
-};
-publishedContent.push(newsItem);
-displayPublishedContent();
-document.getElementById('newsTitle').value = '';
-document.getElementById('newsContent').value = '';
-showAlert('adminAlert', 'Communiqué publié avec succès', 'success');
-}
+    function logoutAdmin() {
+        localStorage.removeItem('adminToken');
+        document.getElementById('adminPanel').style.display = 'none';
+        showAlert('adminAlert', 'Déconnexion réussie', 'success');
+    }
 
-function addDecree() {
-const ref = document.getElementById('decreeRef').value;
-const content = document.getElementById('decreeContent').value;
-if (!ref || !content) {
-showAlert('adminAlert', 'Veuillez remplir tous les champs', 'error');
-return;
-}
-const decreeItem = {
-type: 'decree',
-reference: ref,
-content: content,
-date: new Date().toLocaleDateString('fr-FR', {
-year: 'numeric',
-month: 'long',
-day: 'numeric'
-})
-};
-publishedContent.push(decreeItem);
-displayPublishedContent();
-document.getElementById('decreeRef').value = '';
-document.getElementById('decreeContent').value = '';
-showAlert('adminAlert', 'Décret publié avec succès', 'success');
-}
+    function addNews() {
+        const title = document.getElementById('newsTitle').value;
+        const content = document.getElementById('newsContent').value;
+        if (!title || !content) {
+            showAlert('adminAlert', 'Veuillez remplir tous les champs', 'error');
+            return;
+        }
+        const newsItem = {
+            type: 'news',
+            title: title,
+            content: content,
+            date: new Date().toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+        };
+        publishedContent.push(newsItem);
+        displayPublishedContent();
+        document.getElementById('newsTitle').value = '';
+        document.getElementById('newsContent').value = '';
+        showAlert('adminAlert', 'Communiqué publié avec succès', 'success');
+    }
 
-function displayPublishedContent() {
-const container = document.getElementById('publishedContent');
-container.innerHTML = '<h4>Dernières publications :</h4>';
-publishedContent.slice().reverse().forEach(item => {
-const div = document.createElement('div');
-div.className = 'content-preview';
-if (item.type === 'news') {
-div.innerHTML = `
-<strong>📢 ${item.title}</strong>
-<p>${item.content.substring(0, 100)}...</p>
-<small>${item.date} | Type: Communiqué</small>
-`;
-} else {
-div.innerHTML = `
-<strong>📄 ${item.reference}</strong>
-<p>${item.content.substring(0, 100)}...</p>
-<small>${item.date} | Type: Décret</small>
-`;
-}
-container.appendChild(div);
-});
-}
+    function addDecree() {
+        const ref = document.getElementById('decreeRef').value;
+        const content = document.getElementById('decreeContent').value;
+        if (!ref || !content) {
+            showAlert('adminAlert', 'Veuillez remplir tous les champs', 'error');
+            return;
+        }
+        const decreeItem = {
+            type: 'decree',
+            reference: ref,
+            content: content,
+            date: new Date().toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+        };
+        publishedContent.push(decreeItem);
+        displayPublishedContent();
+        document.getElementById('decreeRef').value = '';
+        document.getElementById('decreeContent').value = '';
+        showAlert('adminAlert', 'Décret publié avec succès', 'success');
+    }
 
-function uploadDocument() {
-const fileInput = document.getElementById('documentUpload');
-if (fileInput.files.length > 0) {
-const file = fileInput.files[0];
-showAlert('adminAlert', `Document "${file.name}" téléchargé (simulation)`, 'success');
-fileInput.value = '';
-}
-}
+    function displayPublishedContent() {
+        const container = document.getElementById('publishedContent');
+        container.innerHTML = '<h4>Dernières publications :</h4>';
+        publishedContent.slice().reverse().forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'content-preview';
+            if (item.type === 'news') {
+                div.innerHTML = `
+                    <strong>📢 ${item.title}</strong>
+                    <p>${item.content.substring(0, 100)}...</p>
+                    <small>${item.date} | Type: Communiqué</small>
+                `;
+            } else {
+                div.innerHTML = `
+                    <strong>📄 ${item.reference}</strong>
+                    <p>${item.content.substring(0, 100)}...</p>
+                    <small>${item.date} | Type: Décret</small>
+                `;
+            }
+            container.appendChild(div);
+        });
+    }
 
-// Vérifier la connexion au chargement
-document.addEventListener('DOMContentLoaded', function() {
-if (localStorage.getItem('adminToken') === ADMIN_CONFIG.TOKEN) {
-document.getElementById('adminPanel').style.display = 'block';
-}
-// Initialiser les données de démonstration
-publishedContent = [
-{
-type: 'news',
-title: 'Lancement officiel de MINIVOTE',
-content: 'Le Ministère de l\'Intérieur annonce le déploiement réussi de la plateforme MINIVOTE pour l\'élection présidentielle.',
-date: '15 septembre 2025'
-},
-{
-type: 'decree',
-reference: 'Décision n°2025-001',
-content: 'Liste des partis autorisés à participer à l\'élection présidentielle virtuelle.',
-date: '1er septembre 2025'
-}
-];
-displayPublishedContent();
-});
+    function uploadDocument() {
+        const fileInput = document.getElementById('documentUpload');
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            showAlert('adminAlert', `Document "${file.name}" téléchargé (simulation)`, 'success');
+            fileInput.value = '';
+        }
+    }
 
-// Smooth scroll pour les ancres
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function(e) {
-e.preventDefault();
-const targetId = this.getAttribute('href');
-if (targetId === '#') return;
-const targetElement = document.querySelector(targetId);
-if (targetElement) {
-window.scrollTo({
-top: targetElement.offsetTop - 80,
-behavior: 'smooth'
-});
-}
-});
-});
+    // Vérifier la connexion au chargement
+    document.addEventListener('DOMContentLoaded', function() {
+        if (localStorage.getItem('adminToken') === ADMIN_CONFIG.TOKEN) {
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+        
+        // Initialiser les données de démonstration
+        publishedContent = [
+            {
+                type: 'news',
+                title: 'Lancement officiel de MINIVOTE',
+                content: 'Le Ministère de l\'Intérieur annonce le déploiement réussi de la plateforme MINIVOTE pour l\'élection présidentielle.',
+                date: '15 septembre 2025'
+            },
+            {
+                type: 'decree',
+                reference: 'Décision n°2025-001',
+                content: 'Liste des partis autorisés à participer à l\'élection présidentielle virtuelle.',
+                date: '1er septembre 2025'
+            }
+        ];
+        displayPublishedContent();
+        
+        // Smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
